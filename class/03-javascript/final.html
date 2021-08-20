@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  
+  <title>FINAL</title>
+  <script>
+    function checkSingup() {
+      const email = document.getElementById("email").value
+      const password1 = document.getElementById("password1").value
+      const password2 = document.getElementById("password2").value
+      const name = document.getElementById("name").value
+      // 이메일 주소 확인 
+      if(email.includes("@")===false){
+        alert("이메일이 올바르지 앖습니다.") //표시 수정
+      }
+      // 비밀번호 일치 확인
+      if(password1 !== password2){
+        alert("비밀번호가 일치하지 않습니다.") //표시 수정
+      }
+      // if(email!=="" && password1!=="" && password2!=="" && name!=="")
+      // else{
+      //   alert("회원가입을 축하합니다.")
+      // }
+    }
+
+    function phoneFocus(){
+      const phone1 = document.getElementById("phone1").value
+      const phone2 = document.getElementById("phone2").value
+      if (phone1.length === 3) {
+        document.getElementById("phone2").focus()
+      }
+      if (phone2.length === 4) {
+        document.getElementById("phone3").focus()
+      }
+    }
+    function phoneColor(){
+      const phone1 = document.getElementById("phone1").value
+      const phone2 = document.getElementById("phone2").value
+      const phone3 = document.getElementById("phone3").value
+      if (phone1.length === 3 && phone2.length === 4 && phone3.length === 4) {
+        document.getElementById("phonebutton").style = "background-color: yellow"
+      }
+    }
+    
+    //인증번호 시간 카운트다운
+    function timeCheck(){
+      let timer = 180
+      setInterval(()=> {
+        if(timer >=0){
+          const min = Math.floor(timer/60)
+          const sec = timer%60
+          timer -= 1
+          document.getElementById("time").innerText = min + ":" + String(sec).padStart(2,"0")
+        }
+      },1000)
+    }
+    
+
+    
+  </script>
+</head>
+<body>
+  <div>
+    <h3>회원가입</h3>
+    <!-- 이메일 입력 -->
+    <input id="email" type="text" placeholder="이메일을 입력해 주세요."><br />
+    <!-- 이름 입력 -->
+    <input id="name" type="text" placeholder="이름을 입력해 주세요."><br />
+    <!-- 비밀번호 입력 -->
+    <input id="password1" type="password" placeholder="비밀번호를 입력해 주세요."><br />
+    <!-- 비밀번호 확인 인력 -->
+    <input id="password2" type="password" placeholder="비밀번호를 다시 입력해 주세요."><br />
+    <!-- 핸드폰 번호 입력 -->
+    <input id="phone1" type="text" size="3" onchange="phoneFocus()" onkeyup="onchange()"> -
+    <input id="phone2" type="text" size="4"onchange="phoneFocus()" onkeyup="onchange()"> -
+    <input id="phone3" type="text" size="3">
+    <!-- 인증번호 전송 -->
+    <div>000000</div>
+    <button id="phonebutton" onclick="timeCheck()">인증번호전송</button>
+    <!-- 인증번호확인 -->
+    <div id="time">3:00</div>
+    <button id="numbutton" onclick="checked()">인증확인</button><br />
+    <!-- 지역선택 -->
+    <select name="" id="">
+      <option value="" selected disabled>지역을 선택하세요.</option>
+      <option value="">서울</option>
+    </select><br />
+    <!-- 성별선택 -->
+    <input type="radio" name="gender" value="여성"><label for="여성">여성</label>
+    <input type="radio" name="gender" value="남성"><label for="남성">남성</label><br />
+    <!-- 개인정보수집 동의 -->
+    <input type="checkbox">이용약관 개인정보 수집 및 이용, 마케팅 활용 선택에 모두 동의합니다.<br />
+    <!-- 가입하기 -->
+    <button id="signup" onclick="checkSingup()">가입하기</button>
+  </div>
+</body>
+</html>

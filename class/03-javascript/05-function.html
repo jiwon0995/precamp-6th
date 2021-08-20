@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Document</title>
+  <script>
+    function getToken() {
+
+      const token = String(Math.floor(Math.random() * 1000000)).padStart(6, "0")
+      
+      document.getElementById("number").innerText = token
+      document.getElementById("number").style.color = "#"+token
+    
+    }  
+    function aaa() {
+        let timer = 180
+        setInterval(() => {
+
+          if (timer >= 0) {
+            const minutes = Math.floor(timer / 60)
+            const seconds = timer % 60
+            timer -= 1
+            document.getElementById("time").innerText = minutes + ":" + String(seconds).padStart(2,"0")   
+          if (minutes === 0 && seconds === 0) {
+            document.getElementById("button").innerText = "시간초과"
+            document.getElementById("button").setAttribute("disabled", "false")
+            }
+          }
+        }, 1000)
+        
+        
+      }
+  </script>
+</head>
+<body>
+  <div id="number">000000</div>
+  <button onclick="getToken()">인증번호 전송</button>
+  <div id="time">3:00</div>
+  <button id="button" onclick="aaa()">인증완료</button>
+</body>
+</html>
